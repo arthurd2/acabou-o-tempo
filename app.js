@@ -68,8 +68,8 @@ class Game {
     })
     this.winnerPerRound[this.currentRound] = this.teams[winnerIndex]
   }
-
   handleEndOfRound() {
+    this.playSound();
     console.log("end of round")
     this.endOfRound = true
     this.updateWinners()
@@ -128,7 +128,7 @@ let timerId = null
 const resetTimer = () => {
   clearInterval(timerId)
   timer = 40
-  //timer = 5
+  timer = 5
 }
 
 resetTimer()
@@ -177,6 +177,7 @@ const updateGameUI = () => {
 
 const timerFinished = () => {
   resetTimer()
+  playSound();
   console.log("timer finished")
   show(timesUpDialog)
   hide(playingBox)
@@ -192,6 +193,11 @@ const nextToPlay = () => {
   updateGameUI()
   hide(timesUpDialog)
   show(getReadyDialog)
+}
+
+const playSound = () => {
+    var audio = new Audio('audio.wav');
+    audio.play();
 }
 
 const updateTimer = () => {
